@@ -1,8 +1,9 @@
 import React from 'react';
 
 import Header from './components/Header';
+import FilterBox from './components/FilterBox';
 
-import GlobalStyle from './styles/global';
+import GlobalStyle from './styles/globalStyle';
 import { Container } from './styles';
 
 const App: React.FC = () => {
@@ -11,6 +12,7 @@ const App: React.FC = () => {
 			<GlobalStyle />
 			<Container>
 				<Header />
+				<FilterBox />
 				<section>users</section>
 			</Container>
 		</>
