@@ -11,6 +11,7 @@ export default createGlobalStyle`
 		font-size: 1rem;
 		font-family: Spartan, sans-serif;
 		font-weight: 500;
+		list-style: none;
 	}
 
 	body, #root {
