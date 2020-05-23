@@ -27,7 +27,7 @@ export const Container = styled.div`
 		margin-top: 15px;
 		background: #fff;
 		color: #7b8e8e;
-		font-size: 13px;
+		font-size: 1.3rem;
 		font-weight: bold;
 
 		:hover {
@@ -54,7 +54,7 @@ export const TechItem = styled.div`
 
 	span {
 		padding: 5px;
-		font-size: 13px;
+		font-size: 1.3rem;
 		font-weight: bold;
 		color: #5ba4a4;
 	}

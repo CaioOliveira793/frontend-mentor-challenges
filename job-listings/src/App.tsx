@@ -4,8 +4,8 @@ import Header from './components/Header';
 import FilterBox from './components/FilterBox';
 import JobBox from './components/JobBox';
 
-import PhotosnapLogo from './assets/photosnap.svg';
-import MyHomeLogo from './assets/myhome.svg';
+import PhotosnapLogo from './assets/images/photosnap.svg';
+import MyHomeLogo from './assets/images/myhome.svg';
 
 import GlobalStyle from './styles/globalStyle';
 import { Container, JobList } from './styles';

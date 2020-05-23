@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, TechList, TechItem } from './styles';
 
-import { ReactComponent as RemoveIcon } from '../../assets/icon-remove.svg';
+import { ReactComponent as RemoveIcon } from '../../assets/images/icon-remove.svg';
 
 const FilterBox: React.FC = () => {
 	function handleClearFilter() {
