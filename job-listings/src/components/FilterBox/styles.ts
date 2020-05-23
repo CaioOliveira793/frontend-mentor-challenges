@@ -26,12 +26,12 @@ export const Container = styled.div`
 		cursor: pointer;
 		margin-top: 15px;
 		background: #fff;
-		color: #7b8e8e;
+		color: ${props => props.theme.colors.secondary};
 		font-size: 1.3rem;
 		font-weight: bold;
 
 		:hover {
-			color: #5ba4a4;
+			color: ${props => props.theme.colors.primary};
 			text-decoration: underline;
 		}
 	}
@@ -50,13 +50,13 @@ export const TechItem = styled.div`
 
 	margin-top: 15px;
 	margin-right: 10px;
-	background: #eef6f6;
+	background: ${props => props.theme.colors.background[1]};
 
 	span {
 		padding: 5px;
 		font-size: 1.3rem;
 		font-weight: bold;
-		color: #5ba4a4;
+		color: ${props => props.theme.colors.primary};
 	}
 
 	button {
@@ -67,20 +67,11 @@ export const TechItem = styled.div`
 		align-items: center;
 		justify-content: center;
 
-		background: #5ba4a4;
+		background: ${props => props.theme.colors.primary};
 		cursor: pointer;
 
 		:hover {
-			background: #2c3a3a;
+			background: ${props => props.theme.colors.info};
 		}
 	}
 `;
-
-// Primary:
-// - Desaturated Dark Cyan: #5ba4a4
-
-// Neutral:
-// - Light Grayish Cyan (Background): #effafa
-// - Light Grayish Cyan (Filter Tablets): #eef6f6
-// - Dark Grayish Cyan: #7b8e8e
-// - Very Dark Grayish Cyan: #2c3a3a

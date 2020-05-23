@@ -14,7 +14,7 @@ export const Container = styled.div`
 	background: #fff;
 
 	:hover {
-		border-left: #5ba4a4 solid 4px;
+		border-left: ${props => props.theme.colors.primary} solid 4px;
 	}
 
 	@media (max-width: 500px) {
@@ -80,7 +80,7 @@ export const JobInfos = styled.div`
 		margin-top: 20px;
 		padding-bottom: 15px;
 
-		border-bottom: #aaa solid 1px;
+		border-bottom: ${props => props.theme.colors.secondary} solid 1px;
 	}
 `;
 
@@ -89,7 +89,7 @@ export const Company = styled.strong`
 	font-size: 1.4rem;
 	font-weight: bold;
 
-	color: #5ba4a4;
+	color: ${props => props.theme.colors.primary};
 `;
 
 export const Title = styled.strong`
@@ -98,10 +98,10 @@ export const Title = styled.strong`
 	font-weight: bold;
 	cursor: pointer;
 
-	color: #2c3a3a;
+	color: ${props => props.theme.colors.info};
 
 	:hover {
-		color: #5ba4a4;
+		color: ${props => props.theme.colors.primary};
 	}
 `;
 
@@ -115,11 +115,11 @@ export const Status = styled.span`
 	color: #fff;
 
 	:nth-child(2) {
-		background: #5ba4a4;
+		background: ${props => props.theme.colors.primary};
 	}
 
 	:nth-child(3) {
-		background: #2c3a3a;
+		background: ${props => props.theme.colors.info};
 	}
 `;
 
@@ -127,7 +127,7 @@ export const Info = styled.span`
 	margin-right: 8px;
 	font-size: 1.4rem;
 
-	color: #7b8e8e;
+	color: ${props => props.theme.colors.secondary};
 `;
 
 export const TagList = styled.div`
@@ -152,12 +152,12 @@ export const Tag = styled.button`
 	font-weight: bold;
 	cursor: pointer;
 
-	color: #5ba4a4;
-	background: #effafa;
+	color: ${props => props.theme.colors.primary};
+	background: ${props => props.theme.colors.background[0]};
 
 	:hover {
 		color: #fff;
-		background: #5ba4a4;
+		background: ${props => props.theme.colors.primary};
 	}
 
 	@media (max-width: 500px) {
