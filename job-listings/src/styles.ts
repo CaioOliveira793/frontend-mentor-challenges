@@ -5,8 +5,12 @@ export const Container = styled.div`
 	flex-flow: column nowrap;
 	align-items: center;
 	justify-content: center;
+`;
 
-	section {
-		font-weight: 500;
-	}
+export const JobList = styled.ul`
+	display: flex;
+	flex-flow: column nowrap;
+
+	width: 90%;
+	max-width: 800px;
 `;

@@ -8,12 +8,18 @@ export default createGlobalStyle`
 		outline: 0;
 		box-sizing: border-box;
 		border-collapse: collapse;
-		font-size: 1rem;
+		font-size: 62.5%;
 		font-family: Spartan, sans-serif;
 		font-weight: 500;
+		list-style: none;
+
+		@media (max-width: 550px) {
+			font-size: 50%;
+		}
 	}
 
 	body, #root {
 		height: 100vh;
+		background: #effafa;
 	}
 `;
