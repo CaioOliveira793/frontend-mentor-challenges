@@ -5,8 +5,7 @@ import Header from './components/Header';
 import FilterBox from './components/FilterBox';
 import JobBox from './components/JobBox';
 
-import PhotosnapLogo from './assets/images/photosnap.svg';
-import MyHomeLogo from './assets/images/myhome.svg';
+import jobData from './assets/jobList';
 
 import cyan from './styles/themes/cyan';
 import GlobalStyle from './styles/globalStyle';
@@ -24,27 +23,28 @@ const App: React.FC = () => {
 				<Header />
 				<FilterBox />
 				<JobList>
-					<li>
-						<JobBox
-							title="Senior Frontend Developer"
-							company="Photosnap"
-							logo={PhotosnapLogo}
-							status={['NEW!', 'FEATURED']}
-							infos={['1d ago', 'Full Time', 'USA only']}
-							tags={['Frontend', 'Senior', 'HTML', 'CSS', 'JavaScript']}
-							onAddTag={handleAddTag}
-						/>
-					</li>
-					<li>
-						<JobBox
-							title="Junior Frontend Developer"
-							company="MyHome"
-							logo={MyHomeLogo}
-							infos={['1d ago', 'Full Time', 'USA only']}
-							tags={['Frontend', 'Junior', 'CSS', 'JavaScript']}
-							onAddTag={handleAddTag}
-						/>
-					</li>
+					{jobData.map(job => {
+						const status = [];
+
+						if (job.new)
+							status.push('NEW!');
+						if (job.featured)
+							status.push('FEATURED!');
+
+						return (
+							<li key={job.id}>
+								<JobBox
+									title={job.position}
+									company={job.company}
+									logo={job.logo}
+									status={status}
+									infos={[job.postedAt, job.contract, job.location]}
+									tags={[...job.tools, ...job.languages]}
+									onAddTag={handleAddTag}
+								/>
+							</li>
+						);
+					})}
 				</JobList>
 			</Container>
 		</ThemeProvider>
