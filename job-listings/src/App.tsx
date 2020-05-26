@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import Header from './components/Header';
@@ -12,39 +12,62 @@ import GlobalStyle from './styles/globalStyle';
 import { Container, JobList } from './styles';
 
 const App: React.FC = () => {
-	function handleAddTag(tag: String) {
-		console.log(`tag ${tag} added`);
-	}
+	const [tagList, setTagList] = useState<string[]>([]);
+
+	const handleTagSelected = useCallback((tag: string) => {
+		setTagList(oldTagList => {
+			if (oldTagList.includes(tag))
+				return oldTagList;
+			else
+				return [...oldTagList, tag];
+		});
+	}, []);
 
   return (
 		<ThemeProvider theme={cyan}>
 			<GlobalStyle />
 			<Container>
 				<Header />
-				<FilterBox />
+				<FilterBox
+					onTagListUpdade={setTagList}
+					tagList={tagList}
+				/>
 				<JobList>
-					{jobData.map(job => {
-						const status = [];
+					{jobData
+						.filter(job => {
+							if (tagList.length === 0) return true;
 
-						if (job.new)
-							status.push('NEW!');
-						if (job.featured)
-							status.push('FEATURED!');
+							const jobTags = [...job.tools, ...job.languages];
+							let tagsFinded = 0;
 
-						return (
-							<li key={job.id}>
-								<JobBox
-									title={job.position}
-									company={job.company}
-									logo={job.logo}
-									status={status}
-									infos={[job.postedAt, job.contract, job.location]}
-									tags={[...job.tools, ...job.languages]}
-									onAddTag={handleAddTag}
-								/>
-							</li>
-						);
-					})}
+							jobTags.forEach((jobTag) => {
+								if (tagList.find(tag => tag === jobTag)) tagsFinded++;
+							});
+
+							return tagsFinded === tagList.length;
+						}).map(job => {
+							const status = [];
+
+							if (job.new)
+								status.push('NEW!');
+							if (job.featured)
+								status.push('FEATURED!');
+
+							return (
+								<li key={job.id}>
+									<JobBox
+										title={job.position}
+										company={job.company}
+										logo={job.logo}
+										status={status}
+										infos={[job.postedAt, job.contract, job.location]}
+										tags={[...job.tools, ...job.languages]}
+										onTagSelected={handleTagSelected}
+									/>
+								</li>
+							);
+						})
+					}
 				</JobList>
 			</Container>
 		</ThemeProvider>
