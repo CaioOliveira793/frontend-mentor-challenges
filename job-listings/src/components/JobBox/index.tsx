@@ -19,7 +19,7 @@ interface IProps {
 	status?: String[],
 	infos: String[],
 	tags: String[],
-	onAddTag: Function,
+	onTagSelected: Function,
 }
 
 const JobBox: React.FC<IProps> = ({
@@ -29,7 +29,7 @@ const JobBox: React.FC<IProps> = ({
 	status,
 	tags,
 	infos,
-	onAddTag
+	onTagSelected
 }) => {
 	return (
 		<Container>
@@ -52,7 +52,7 @@ const JobBox: React.FC<IProps> = ({
 				{tags.map((tag, index) => (
 					<Tag
 						key={index}
-						onClick={() => onAddTag(tag)}
+						onClick={() => onTagSelected(tag)}
 					>
 						{tag}
 					</Tag>

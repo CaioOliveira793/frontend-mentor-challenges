@@ -4,38 +4,29 @@ import { Container, TechList, TechItem } from './styles';
 
 import { ReactComponent as RemoveIcon } from '../../assets/images/icon-remove.svg';
 
-const FilterBox: React.FC = () => {
-	function handleClearFilter() {
-		console.log('filter cleared');
-	}
+interface IProps {
+	tagList: string[],
+	onTagListUpdade: Function
+}
 
-	function handleRemoveItem() {
-		console.log('Item removed');
-	}
-
+const FilterBox: React.FC<IProps> = ({ tagList, onTagListUpdade }) => {
 	return (
 		<Container>
 			<TechList>
-				<TechItem>
-					<span>Frontend</span>
-					<button onClick={handleRemoveItem}>
-						<RemoveIcon />
-					</button>
-				</TechItem>
-				<TechItem>
-					<span>CSS</span>
-					<button onClick={handleRemoveItem}>
-						<RemoveIcon />
-					</button>
-				</TechItem>
-				<TechItem>
-					<span>Javascript</span>
-					<button onClick={handleRemoveItem}>
-						<RemoveIcon />
-					</button>
-				</TechItem>
+				{tagList.map(tag => (
+					<TechItem key={tag}>
+						<span>{tag}</span>
+						<button onClick={() => {
+							const newTagList = tagList.filter(tagFilter => tag !== tagFilter);
+
+							onTagListUpdade(newTagList);
+						}}>
+							<RemoveIcon />
+						</button>
+					</TechItem>
+				))}
 			</TechList>
-			<button onClick={handleClearFilter}>Clear</button>
+			<button onClick={() => onTagListUpdade([])}>Clear</button>
 		</Container>
 	);
 }
