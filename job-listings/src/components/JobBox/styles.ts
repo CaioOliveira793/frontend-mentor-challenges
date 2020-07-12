@@ -12,6 +12,7 @@ export const Container = styled.div`
 	border-left: #fff solid 4px;
 
 	background: #fff;
+	box-shadow: 2px 10px 14px 0px #d3f0f0;
 
 	:hover {
 		border-left: ${props => props.theme.colors.primary} solid 4px;
@@ -111,6 +112,7 @@ export const Status = styled.span`
 	margin-right: 8px;
 	font-size: 1.2rem;
 	font-weight: bold;
+	text-transform: uppercase;
 
 	color: #fff;
 
@@ -141,6 +143,7 @@ export const TagList = styled.div`
 
 	@media (max-width: 500px) {
 		justify-content: flex-start;
+		flex-basis: 100%;
 	}
 `;
 
