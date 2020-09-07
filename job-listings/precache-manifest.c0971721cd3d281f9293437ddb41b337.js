@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "12b7a435159493f1ab312ece14d92b4c",
+    "revision": "b02feffe0749cf8f4411f6d6f14b8253",
     "url": "/frontend-mentor-challenges/job-listings/index.html"
   },
   {
-    "revision": "02079b23a1e024ccc814",
-    "url": "/frontend-mentor-challenges/job-listings/static/js/2.2db25147.chunk.js"
+    "revision": "dca504a37459b80c1054",
+    "url": "/frontend-mentor-challenges/job-listings/static/js/2.f4221c26.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/frontend-mentor-challenges/job-listings/static/js/2.2db25147.chunk.js.LICENSE.txt"
+    "url": "/frontend-mentor-challenges/job-listings/static/js/2.f4221c26.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c927778e0fcb26c199ad",
-    "url": "/frontend-mentor-challenges/job-listings/static/js/main.fadf5073.chunk.js"
+    "revision": "c5180e04b29ccb5e1822",
+    "url": "/frontend-mentor-challenges/job-listings/static/js/main.6c05c796.chunk.js"
   },
   {
-    "revision": "d35c9b0c0accf4865a5e",
-    "url": "/frontend-mentor-challenges/job-listings/static/js/runtime-main.64777a1d.js"
+    "revision": "f9f7c260ed3def562fae",
+    "url": "/frontend-mentor-challenges/job-listings/static/js/runtime-main.80f8a6d1.js"
   },
   {
     "revision": "9f72c13bc10a76e4bcb8f7ab62582b9f",
