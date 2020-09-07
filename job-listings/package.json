@@ -1,11 +1,11 @@
 {
   "name": "job-listings",
-	"homepage": "http://caiooliveira793.github.io/frontend-mentor-challenges/job-listings",
-	"author": {
-		"email": "caio.vsoliveira23@gmail.com",
-		"name": "Caio Oliveira",
-		"url": "https://github.com/CaioOliveira793"
-	},
+  "homepage": "http://caiooliveira793.github.io/frontend-mentor-challenges/job-listings",
+  "author": {
+    "email": "caio.vsoliveira23@gmail.com",
+    "name": "Caio Oliveira",
+    "url": "https://github.com/CaioOliveira793"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -29,8 +29,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-		"predeploy": "yarn build",
-		"deploy": "gh-pages --dist build --dest job-listings",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages --dist build --dest job-listings",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

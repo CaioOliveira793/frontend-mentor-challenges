@@ -6,7 +6,7 @@ import { ReactComponent as RemoveIcon } from '../../assets/images/icon-remove.sv
 
 interface IProps {
 	tagList: string[],
-	onTagListUpdade: Function
+	onTagListUpdade: (tagList: string[]) => void;
 }
 
 const FilterBox: React.FC<IProps> = ({ tagList, onTagListUpdade }) => {
