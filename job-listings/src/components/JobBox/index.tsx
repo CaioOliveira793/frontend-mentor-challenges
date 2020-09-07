@@ -13,13 +13,13 @@ import {
 } from './styles';
 
 interface IProps {
-	title: String,
+	title: string,
 	logo: string,
-	company: String,
-	status?: String[],
-	infos: String[],
-	tags: String[],
-	onTagSelected: Function,
+	company: string,
+	status?: string[],
+	infos: string[],
+	tags: string[],
+	onTagSelected: (tag: string) => void,
 }
 
 const JobBox: React.FC<IProps> = ({
