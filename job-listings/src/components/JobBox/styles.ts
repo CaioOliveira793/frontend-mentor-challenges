@@ -130,6 +130,10 @@ export const Info = styled.span`
 	font-size: 1.4rem;
 
 	color: ${props => props.theme.colors.secondary};
+
+	:not(:first-child)::before {
+		content: "\\2022  ";
+	}
 `;
 
 export const TagList = styled.div`
