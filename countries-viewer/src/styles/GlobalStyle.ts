@@ -9,6 +9,7 @@ export default createGlobalStyle`
 		box-sizing: border-box;
 		border-collapse: collapse;
 		font-size: 14px;
+		font-weight: 500;
 		font-family: 'Nunito Sans', sans-serif;
 	}
 

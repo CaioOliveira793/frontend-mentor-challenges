@@ -1,0 +1,46 @@
+import styled from 'styled-components';
+
+export const Container = styled.div`
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+
+	height: 80px;
+
+	background: ${({ theme }) => theme.colors.elements};
+	box-shadow: ${({ theme }) => theme.shadow};
+
+	> header {
+		display: flex;
+		flex-flow: row nowrap;
+		flex-basis: 100%;
+		align-items: center;
+		justify-content: space-between;
+
+		max-width: 1400px;
+		height: 100%;
+		padding: 40px;
+	}
+`;
+
+export const Title = styled.h1`
+	font-size: 24px;
+	font-weight: 800;
+
+	color: ${({ theme }) => theme.colors.text};
+`;
+
+export const ThemeSwitcher = styled.button`
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: space-between;
+	
+	background: transparent;
+	color: ${({ theme }) => theme.colors.text};
+
+	> span {
+		margin-left: 8px;
+	}
+`;

@@ -4,8 +4,10 @@ export default {
 	name: 'light',
 
 	colors: {
-		elements: 'hsl(0, 0%, 100%)',
-		background: 'hsl(0, 0%, 98%)',
-		text: 'hsl(200, 15%, 8%)'
-	}
+		elements: '#FFF',
+		background: '#FAFAFA',
+		text: '#111517'
+	},
+
+	shadow: '0px 3px 4px 0px #EAEAEA;'
 };

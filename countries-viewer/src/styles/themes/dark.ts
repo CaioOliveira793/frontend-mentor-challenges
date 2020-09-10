@@ -4,8 +4,10 @@ export default {
 	name: 'dark',
 
 	colors: {
-		elements: 'hsl(209, 23%, 22%)',
-		background: 'hsl(207, 26%, 17%)',
-		text: 'hsl(0, 0%, 100%)'
-	}
+		elements: '#2B3945',
+		background: '#202C37',
+		text: '#FFF'
+	},
+
+	shadow: '0px 3px 4px 0px #101C27;'
 };
