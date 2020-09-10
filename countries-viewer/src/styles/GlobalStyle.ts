@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-	@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
-
   * {
 		margin: 0;
 		padding: 0;
@@ -10,12 +8,12 @@ export default createGlobalStyle`
 		outline: 0;
 		box-sizing: border-box;
 		border-collapse: collapse;
-		font-size: 1rem;
+		font-size: 14px;
 		font-family: 'Nunito Sans', sans-serif;
-		color: "#0ff";
 	}
 
-	html, body {
-		font-size: 14px;
+	body {
+		height: 100vh;
+		background: ${({ theme }) => theme.colors.background};
 	}
 `;
