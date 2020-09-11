@@ -9,6 +9,7 @@ export const Container = styled.div`
 	position: relative;
 
 	max-width: 200px;
+	height: 60px;
 	padding: 18px 20px;
 	border-radius: ${({ theme }) => theme.value.borderRadius};
 

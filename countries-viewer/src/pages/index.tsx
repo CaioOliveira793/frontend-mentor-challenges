@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Header from '../components/Header';
 import Search, { SearchForwardRef } from '../components/Search';
 import Dropdown from '../components/Dropdown';
+import CountryCard from '../components/CountryCard';
 
 const Container = styled.div`
 	display: flex;
@@ -22,7 +23,7 @@ const SearchContainer = styled.div`
 
 	max-width: ${({ theme }) => theme.value.maxPageWidth};
 	width: 100%;
-	margin-top: 48px;
+	margin: 48px 0px;
 	padding: 0px 40px;
 `;
 
@@ -44,6 +45,13 @@ export default function Home() {
 				<Search placeholder="Search for a country..." ref={searchRef} />
 				<Dropdown label="Filter by Region" list={list} />
 			</SearchContainer>
+			<CountryCard
+				imageUrl="https://restcountries.eu/data/bra.svg"
+				countryName="Brazil"
+				population={200000000}
+				region="Americas"
+				capital="Brasília"
+			/>
 		</Container>
 	)
 }
