@@ -8,8 +8,8 @@ export const Container = styled.div`
 
 	height: 80px;
 
-	background: ${({ theme }) => theme.colors.elements};
-	box-shadow: ${({ theme }) => theme.shadow};
+	background: ${({ theme }) => theme.value.colors.elements};
+	box-shadow: ${({ theme }) => theme.value.shadow};
 
 	> header {
 		display: flex;
@@ -28,7 +28,7 @@ export const Title = styled.h1`
 	font-size: 24px;
 	font-weight: 800;
 
-	color: ${({ theme }) => theme.colors.text};
+	color: ${({ theme }) => theme.value.colors.text};
 `;
 
 export const ThemeSwitcher = styled.button`
@@ -38,7 +38,7 @@ export const ThemeSwitcher = styled.button`
 	justify-content: space-between;
 	
 	background: transparent;
-	color: ${({ theme }) => theme.colors.text};
+	color: ${({ theme }) => theme.value.colors.text};
 
 	> span {
 		margin-left: 8px;

@@ -2,14 +2,18 @@ import 'styled-components';
 
 declare module 'styled-components' {
 	export interface DefaultTheme {
-		name: string,
+		value: {
+			name: string,
 
-		colors: {
-			elements: string,
-			background: string,
-			text: string
+			colors: {
+				elements: string,
+				background: string,
+				text: string
+			},
+
+			shadow: string
 		},
 
-		shadow: string
+		choose: (name: 'light' | 'dark') => void;
 	}
 }
