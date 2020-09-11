@@ -30,17 +30,3 @@ export const Title = styled.h1`
 
 	color: ${({ theme }) => theme.value.colors.text};
 `;
-
-export const ThemeSwitcher = styled.button`
-	display: flex;
-	flex-flow: row nowrap;
-	align-items: center;
-	justify-content: space-between;
-	
-	background: transparent;
-	color: ${({ theme }) => theme.value.colors.text};
-
-	> span {
-		margin-left: 8px;
-	}
-`;
