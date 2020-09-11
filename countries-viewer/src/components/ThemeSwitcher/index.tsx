@@ -16,7 +16,7 @@ const ThemeSwitcher: React.FC = () => {
 	return (
 		<Container onClick={toogleTheme}>
 			<FaMoon size={18} />
-			<span>{capitalize(themeContext.value.name)} Mode</span>
+			<span>{`${capitalize(themeContext.value.name)} Mode`}</span>
 		</Container>
 	);
 }

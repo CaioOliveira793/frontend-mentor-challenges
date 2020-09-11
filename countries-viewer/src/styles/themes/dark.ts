@@ -9,5 +9,7 @@ export default {
 		text: '#FFF'
 	},
 
-	shadow: '0px 3px 4px 0px #101C27;'
+	shadow: '0px 0px 4px 0px #101C27;',
+	borderRadius: '5px',
+	maxPageWidth: '1400px'
 };

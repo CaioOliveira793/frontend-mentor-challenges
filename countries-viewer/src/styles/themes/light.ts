@@ -9,5 +9,7 @@ export default {
 		text: '#111517'
 	},
 
-	shadow: '0px 3px 4px 0px #EAEAEA;'
+	shadow: '0px 0px 4px 0px #EAEAEA;',
+	borderRadius: '5px',
+	maxPageWidth: '1400px'
 };

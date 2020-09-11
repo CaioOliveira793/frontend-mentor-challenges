@@ -18,7 +18,7 @@ export const Container = styled.div`
 		align-items: center;
 		justify-content: space-between;
 
-		max-width: 1400px;
+		max-width: ${({ theme }) => theme.value.maxPageWidth};
 		height: 100%;
 		padding: 40px;
 	}

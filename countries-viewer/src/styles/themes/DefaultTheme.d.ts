@@ -11,7 +11,9 @@ declare module 'styled-components' {
 				text: string
 			},
 
-			shadow: string
+			shadow: string,
+			borderRadius: string,
+			maxPageWidth: string
 		},
 
 		choose: (name: 'light' | 'dark') => void;
