@@ -8,7 +8,8 @@ declare module 'styled-components' {
 			colors: {
 				elements: string,
 				background: string,
-				text: string
+				text: string,
+				scroll: string
 			},
 
 			shadow: string,

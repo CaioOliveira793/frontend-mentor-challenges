@@ -1,10 +1,12 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 
 import Header from '../components/Header';
 import Search from '../components/Search';
 import Dropdown from '../components/Dropdown';
 import CountryCard from '../components/CountryCard';
+
+import countriesAPI from '../services/countriesAPI';
 
 const Container = styled.div`
 	display: flex;
@@ -48,13 +50,27 @@ const regions = [
 	{ value: 'oceania', label: 'Oceania' }
 ];
 
+interface CountryData {
+	name: string;
+	flag: string;
+	population: number;
+	region: string;
+	capital: string;
+}
+
 export default function Home() {
-	const handleSearchValueChange = useCallback((searchValue: string) => {
-		console.log(searchValue);
+	const [countryDataState, setCountryDataState] = useState<CountryData[]>([]);
+
+	const handleSearchValueChange = useCallback(async (searchValue: string) => {
+		const response = await countriesAPI.get<CountryData[]>(`/name/${searchValue}?fields=name;population;region;capital;flag`);
+		const { data } = response;
+		setCountryDataState(data);
 	}, []);
 
-	const handleDropdownSelectionChange = useCallback((value: typeof regions[number]['value']) => {
-		console.log(value);
+	const handleDropdownSelectionChange = useCallback(async (selectedValue: typeof regions[number]['value']) => {
+		const response = await countriesAPI.get<CountryData[]>(`/region/${selectedValue}?fields=name;population;region;capital;flag`);
+		const { data } = response;
+		setCountryDataState(data);
 	}, []);
 
 
@@ -65,15 +81,17 @@ export default function Home() {
 				<Search placeholder="Search for a country..." debounce={500} onSearchValueChange={handleSearchValueChange} />
 				<Dropdown label="Filter by Region" list={regions} onSelectedValueChange={handleDropdownSelectionChange} />
 			</SearchContainer>
-			{/* https://restcountries.eu/rest/v2/region/oceania?fields=name;population;region;capital;flag */}
 			<CountryCardContainer>
-				<CountryCard
-					imageUrl="https://restcountries.eu/data/bra.svg"
-					countryName="Brazil"
-					population={200000000}
-					region="Americas"
-					capital="Brasília"
-				/>
+				{countryDataState.map((countryData, index) => (
+					<CountryCard
+						key={index}
+						flagURL={countryData.flag}
+						countryName={countryData.name}
+						population={countryData.population}
+						region={countryData.region}
+						capital={countryData.capital}
+					/>
+				))}
 			</CountryCardContainer>
 		</Container>
 	)

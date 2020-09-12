@@ -6,7 +6,8 @@ export default {
 	colors: {
 		elements: '#2B3945',
 		background: '#202C37',
-		text: '#FFF'
+		text: '#FFF',
+		scroll: '#1D2832',
 	},
 
 	shadow: '0px 0px 4px 0px #101C27;',

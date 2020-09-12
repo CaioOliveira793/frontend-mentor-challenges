@@ -6,12 +6,24 @@ export const Container = styled.div`
 	align-items: flex-start;
 	justify-content: flex-start;
 
+	max-width: 280px;
+	height: 400px;
+	overflow-y: auto;
 	margin-bottom: 48px;
 	padding-bottom: 40px;
 	border-radius: ${({ theme }) => theme.value.borderRadius};
 
 	background: ${({ theme }) => theme.value.colors.elements};
 	box-shadow: ${({ theme }) => theme.value.shadow};
+
+	::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: ${({ theme }) => theme.value.colors.scroll};
+		border-radius: 3px;
+	}
 `;
 
 export const Name = styled.strong`
@@ -23,7 +35,6 @@ export const Name = styled.strong`
 `;
 
 export const Flag = styled.img`
-	max-width: 280px;
 	width: 100%;
 
 	border-top-left-radius: ${({ theme }) => theme.value.borderRadius};
