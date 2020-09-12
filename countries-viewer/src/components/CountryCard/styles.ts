@@ -7,9 +7,8 @@ export const Container = styled.div`
 	justify-content: flex-start;
 
 	max-width: 280px;
-	height: 400px;
+	height: 360px;
 	overflow-y: auto;
-	margin-bottom: 48px;
 	padding-bottom: 40px;
 	border-radius: ${({ theme }) => theme.value.borderRadius};
 

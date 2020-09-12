@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import styled from 'styled-components';
+import styled, { CSSObject } from 'styled-components';
 
 import Header from '../components/Header';
 import Search from '../components/Search';
@@ -16,17 +16,27 @@ const Container = styled.div`
 	justify-content: flex-start;
 `;
 
+const StyledSearch = styled(Search)`
+	flex-shrink: 4;
+`;
+
 const SearchContainer = styled.div`
 	display: flex;
 	flex-flow: row nowrap;
 	flex-basis: 100%;
 	align-items: center;
 	justify-content: space-between;
+	gap: 32px;
 
 	max-width: ${({ theme }) => theme.value.maxPageWidth};
 	width: 100%;
 	margin: 48px 0px;
 	padding: 0px 40px;
+
+	@media (max-width: 575px) {
+		flex-wrap: wrap;
+		gap: 16px;
+	}
 `;
 
 const CountryCardContainer = styled.div`
@@ -39,7 +49,20 @@ const CountryCardContainer = styled.div`
 	max-width: ${({ theme }) => theme.value.maxPageWidth};
 	width: 100%;
 	gap: 32px;
+	margin-bottom: 32px;
 	padding: 0px 40px;
+
+	@media (max-width: 575px) {
+		margin-bottom: 18px;
+		gap: 18px;
+	}
+`;
+
+const StyledCountryCard = styled(CountryCard)`
+	@media (max-width: 575px) {
+		max-width: 200px;
+		max-height: 310px;
+	}
 `;
 
 const regions = [
@@ -78,12 +101,12 @@ export default function Home() {
 		<Container>
 			<Header />
 			<SearchContainer>
-				<Search placeholder="Search for a country..." debounce={500} onSearchValueChange={handleSearchValueChange} />
+				<StyledSearch placeholder="Search for a country..." debounce={500} onSearchValueChange={handleSearchValueChange} />
 				<Dropdown label="Filter by Region" list={regions} onSelectedValueChange={handleDropdownSelectionChange} />
 			</SearchContainer>
 			<CountryCardContainer>
 				{countryDataState.map((countryData, index) => (
-					<CountryCard
+					<StyledCountryCard
 						key={index}
 						flagURL={countryData.flag}
 						countryName={countryData.name}

@@ -4,12 +4,13 @@ import { FaSearch } from 'react-icons/fa';
 import { Container, Input } from './styles';
 
 interface SearchProps {
-	placeholder: string,
-	debounce?: number,
+	className?: string;
+	placeholder: string;
+	debounce?: number;
 	onSearchValueChange: (value: string) => void;
 }
 
-const Search: React.FC<SearchProps> = (({ placeholder, onSearchValueChange, debounce }) => {
+const Search: React.FC<SearchProps> = (({ placeholder, onSearchValueChange, debounce, className }) => {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const timeoutIdRef = useRef(-1);
 
@@ -33,7 +34,7 @@ const Search: React.FC<SearchProps> = (({ placeholder, onSearchValueChange, debo
 	}, [inputRef]);
 
 	return (
-		<Container onClick={handleFocus}>
+		<Container className={className} onClick={handleFocus}>
 			<FaSearch size={22} />
 			<Input
 				type="text"

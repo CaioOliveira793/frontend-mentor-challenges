@@ -3,16 +3,17 @@ import React from 'react';
 import { Container, Name, Flag, InfoKey, InfoValue } from './styles';
 
 interface CountryCardProps {
-	flagURL: string,
-	countryName: string,
-	population: number,
-	region: string,
-	capital: string,
+	className?: string;
+	flagURL: string;
+	countryName: string;
+	population: number;
+	region: string;
+	capital: string;
 }
 
-const CountryCard: React.FC<CountryCardProps> = ({ countryName, flagURL, population, region, capital }) => {
+const CountryCard: React.FC<CountryCardProps> = ({ countryName, flagURL, population, region, capital, className }) => {
 	return (
-		<Container>
+		<Container className={className}>
 			<Flag src={flagURL} alt=""/>
 			<Name>{countryName}</Name>
 			<div>

@@ -9,6 +9,8 @@ export const Container = styled.div`
 	position: relative;
 
 	max-width: 200px;
+	flex-shrink: 0;
+	width: 100%;
 	height: 60px;
 	padding: 18px 20px;
 	border-radius: ${({ theme }) => theme.value.borderRadius};

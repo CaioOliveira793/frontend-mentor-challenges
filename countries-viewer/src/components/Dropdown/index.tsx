@@ -4,12 +4,13 @@ import { FaAngleDown } from 'react-icons/fa';
 import { Container, SelectionBox, Option } from './styles';
 
 interface DropdownProps {
-	label: string,
-	list: { value: any, label: string }[],
-	onSelectedValueChange: (value: any) => void
+	className?: string;
+	label: string;
+	list: { value: any, label: string }[];
+	onSelectedValueChange: (value: any) => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ label, list, onSelectedValueChange }) => {
+const Dropdown: React.FC<DropdownProps> = ({ label, list, onSelectedValueChange, className }) => {
 	const [visible, setVisible] = useState(false);
 	const [activeItem, setActiveItem] = useState(label);
 
@@ -34,6 +35,7 @@ const Dropdown: React.FC<DropdownProps> = ({ label, list, onSelectedValueChange 
 
 	return (
 		<Container
+			className={className}
 			onFocus={handleOpenSelectionBox}
 			onBlur={handleCloseSelectionBox}
 			tabIndex={1}
