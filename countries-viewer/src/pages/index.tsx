@@ -53,13 +53,17 @@ export default function Home() {
 		console.log(searchValue);
 	}, []);
 
+	const handleDropdownSelectionChange = useCallback((value: typeof regions[number]['value']) => {
+		console.log(value);
+	}, []);
+
 
   return (
 		<Container>
 			<Header />
 			<SearchContainer>
 				<Search placeholder="Search for a country..." debounce={500} onSearchValueChange={handleSearchValueChange} />
-				<Dropdown label="Filter by Region" list={regions} />
+				<Dropdown label="Filter by Region" list={regions} onSelectedValueChange={handleDropdownSelectionChange} />
 			</SearchContainer>
 			{/* https://restcountries.eu/rest/v2/region/oceania?fields=name;population;region;capital;flag */}
 			<CountryCardContainer>

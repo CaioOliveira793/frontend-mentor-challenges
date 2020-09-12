@@ -5,10 +5,11 @@ import { Container, SelectionBox, Option } from './styles';
 
 interface DropdownProps {
 	label: string,
-	list: { value: any, label: string }[]
+	list: { value: any, label: string }[],
+	onSelectedValueChange: (value: any) => void
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ label, list }) => {
+const Dropdown: React.FC<DropdownProps> = ({ label, list, onSelectedValueChange }) => {
 	const [visible, setVisible] = useState(false);
 	const [activeItem, setActiveItem] = useState(label);
 
@@ -17,19 +18,19 @@ const Dropdown: React.FC<DropdownProps> = ({ label, list }) => {
 	const handleOpenSelectionBox = useCallback(() => {
 		setVisible(true);
 		containerRef.current.focus();
-	}, [setVisible]);
+	}, [setVisible, containerRef]);
 
 	const handleCloseSelectionBox = useCallback(() => {
 		setVisible(false);
 		containerRef.current.blur();
-	}, [setVisible]);
+	}, [setVisible, containerRef]);
 
 	const handleSelectItem = useCallback((label: string, value: any) => {
 		setActiveItem(label);
 		handleCloseSelectionBox();
 
-		console.log(value);
-	}, []);
+		onSelectedValueChange(value);
+	}, [setActiveItem, handleCloseSelectionBox, onSelectedValueChange]);
 
 	return (
 		<Container
