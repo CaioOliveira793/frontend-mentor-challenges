@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
 import Header from '../components/Header';
-import Search, { SearchForwardRef } from '../components/Search';
+import Search from '../components/Search';
 import Dropdown from '../components/Dropdown';
 import CountryCard from '../components/CountryCard';
 
@@ -27,31 +27,50 @@ const SearchContainer = styled.div`
 	padding: 0px 40px;
 `;
 
-export default function Home() {
-	const searchRef = useRef<SearchForwardRef>(null);
+const CountryCardContainer = styled.div`
+	display: flex;
+	flex-flow: row wrap;
+	flex-basis: 100%;
+	align-items: flex-start;
+	justify-content: space-evenly;
 
-	const [list, setList] = useState([
-		{ value: 'africa', label: 'Africa' },
-		{ value: 'america', label: 'America' },
-		{ value: 'asia', label: 'Asia' },
-		{ value: 'europe', label: 'Europe' },
-		{ value: 'oceania', label: 'Oceania' }
-	]);
+	max-width: ${({ theme }) => theme.value.maxPageWidth};
+	width: 100%;
+	gap: 32px;
+	padding: 0px 40px;
+`;
+
+const regions = [
+	{ value: 'africa', label: 'Africa' },
+	{ value: 'americas', label: 'America' },
+	{ value: 'asia', label: 'Asia' },
+	{ value: 'europe', label: 'Europe' },
+	{ value: 'oceania', label: 'Oceania' }
+];
+
+export default function Home() {
+	const handleSearchValueChange = useCallback((searchValue: string) => {
+		console.log(searchValue);
+	}, []);
+
 
   return (
 		<Container>
 			<Header />
 			<SearchContainer>
-				<Search placeholder="Search for a country..." ref={searchRef} />
-				<Dropdown label="Filter by Region" list={list} />
+				<Search placeholder="Search for a country..." debounce={500} onSearchValueChange={handleSearchValueChange} />
+				<Dropdown label="Filter by Region" list={regions} />
 			</SearchContainer>
-			<CountryCard
-				imageUrl="https://restcountries.eu/data/bra.svg"
-				countryName="Brazil"
-				population={200000000}
-				region="Americas"
-				capital="Brasília"
-			/>
+			{/* https://restcountries.eu/rest/v2/region/oceania?fields=name;population;region;capital;flag */}
+			<CountryCardContainer>
+				<CountryCard
+					imageUrl="https://restcountries.eu/data/bra.svg"
+					countryName="Brazil"
+					population={200000000}
+					region="Americas"
+					capital="Brasília"
+				/>
+			</CountryCardContainer>
 		</Container>
 	)
 }
