@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import Info from '../Info';
+
 export const Container = styled.div`
 	display: flex;
 	flex-flow: column nowrap;
@@ -40,13 +42,6 @@ export const Flag = styled.img`
 	border-top-right-radius: ${({ theme }) => theme.value.borderRadius};
 `;
 
-export const InfoKey = styled.span`
+export const StyledInfo = styled(Info)`
 	margin-left: 24px;
-	font-weight: 600;
-
-	color: ${({ theme }) => theme.value.colors.text};
-`;
-
-export const InfoValue = styled.span`
-	color: ${({ theme }) => theme.value.colors.text};
 `;

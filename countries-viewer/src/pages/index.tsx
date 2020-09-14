@@ -1,5 +1,6 @@
-import React, { useCallback, useState } from 'react';
-import styled, { CSSObject } from 'styled-components';
+import React, { useCallback, useEffect, useState } from 'react';
+import { RouteComponentProps, WindowLocation } from '@reach/router';
+import styled from 'styled-components';
 
 import Header from '../components/Header';
 import Search from '../components/Search';
@@ -81,8 +82,18 @@ interface CountryData {
 	capital: string;
 }
 
-export default function Home() {
+
+const Home: React.FC<RouteComponentProps> = ({ location }) => {
 	const [countryDataState, setCountryDataState] = useState<CountryData[]>([]);
+
+	useEffect(() => {
+		async function loadAllCountries() {
+			const response = await countriesAPI.get<CountryData[]>('/all?fields=name;population;region;capital;flag');
+			const { data } = response;
+			setCountryDataState(data);
+		}
+		loadAllCountries();
+	}, []);
 
 	const handleSearchValueChange = useCallback(async (searchValue: string) => {
 		const response = await countriesAPI.get<CountryData[]>(`/name/${searchValue}?fields=name;population;region;capital;flag`);
@@ -119,3 +130,5 @@ export default function Home() {
 		</Container>
 	)
 }
+
+export default Home;

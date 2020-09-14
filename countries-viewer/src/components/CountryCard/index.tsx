@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Name, Flag, InfoKey, InfoValue } from './styles';
+import { Container, Name, Flag, StyledInfo } from './styles';
 
 interface CountryCardProps {
 	className?: string;
@@ -16,18 +16,9 @@ const CountryCard: React.FC<CountryCardProps> = ({ countryName, flagURL, populat
 		<Container className={className}>
 			<Flag src={flagURL} alt=""/>
 			<Name>{countryName}</Name>
-			<div>
-				<InfoKey>Population: </InfoKey>
-				<InfoValue>{population}</InfoValue>
-			</div>
-			<div>
-				<InfoKey>Region: </InfoKey>
-				<InfoValue>{region}</InfoValue>
-			</div>
-			<div>
-				<InfoKey>Capital: </InfoKey>
-				<InfoValue>{capital}</InfoValue>
-			</div>
+			<StyledInfo infoKey="Population" infoValue={population} />
+			<StyledInfo infoKey="Region" infoValue={region} />
+			<StyledInfo infoKey="Capital" infoValue={capital} />
 		</Container>
 	);
 }
