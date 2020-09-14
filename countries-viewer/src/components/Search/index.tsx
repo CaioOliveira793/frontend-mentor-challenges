@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useImperativeHandle, useRef, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 import { Container, Input } from './styles';
