@@ -64,11 +64,24 @@ export const CountryContentContainer = styled.div`
 	max-width: ${({ theme }) => theme.value.maxPageWidth};
 	width: 100%;
 	padding: 0px 40px;
+
+	@media (max-width: 1030px) {
+		flex-direction: column;
+		gap: 56px;
+	}
+
+	@media (max-width: 600px) {
+		gap: 22px;
+	}
 `;
 
 export const FlagImage = styled.img`
 	max-width: 520px;
 	width: 100%;
+	
+	@media (max-width: 1030px) {
+		max-width: 740px;
+	}
 `;
 
 export const CountryDetailsContainer = styled.div`
@@ -79,12 +92,16 @@ export const CountryDetailsContainer = styled.div`
 
 	width: 100%;
 	height: 100%;
+
+	@media (max-width: 1030px) {
+		align-items: center;
+	}
 `;
 
 export const Name = styled.h2`
 	font-size: 26px;
 	font-weight: 800;
-	padding-bottom: 22px;
+	padding: 22px 0px;
 	color: ${({ theme }) => theme.value.colors.text};
 `;
 
@@ -106,8 +123,12 @@ export const TagContainer = styled.div`
 	justify-content: flex-start;
 	gap: 12px;
 
-	margin-top: 32px;
+	margin: 32px 0px;
 	font-weight: 600;
 
 	color: ${({ theme }) => theme.value.colors.text};
+
+	@media (max-width: 1030px) {
+		width: 100%;
+	}
 `;
