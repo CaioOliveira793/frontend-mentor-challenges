@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
-import { RouteComponentProps } from '@reach/router';
+import { RouteComponentProps, useNavigate } from '@reach/router';
 
 import Header from '../../components/Header';
 import Info from '../../components/Info';
@@ -34,22 +34,31 @@ interface CountryDetailData {
 
 
 const Country: React.FC<RouteComponentProps> = ({ location }) => {
+	const navigate = useNavigate();
 	const [countryDetailsData, setCountryDetailsData] = useState<CountryDetailData>(null);
+
 	useEffect(() => {
 		const { pathname } = location;
-		const countryName = pathname.substring(pathname.lastIndexOf('/') + 1);
+		const countryCode = pathname.substring(pathname.lastIndexOf('/') + 1);
 
 		async function loadCountryDetails() {
-			const countryResponse = await countriesAPI.get<CountryDetailData[]>(`/name/${countryName}?fullText=true`);
-			const countryData = countryResponse.data[0];
+			try {
+				const countryResponse = await countriesAPI.get<CountryDetailData>(`/alpha/${countryCode}`);
+				const countryData = countryResponse.data;
 
-			const borderCountryResponse = await countriesAPI.get(`/alpha?codes=${countryData.borders.join(';')}`);
-			const borderCountryData = borderCountryResponse.data;
+				let borderCountryData = [];
+				if (countryData.borders.length >= 1) {
+					const borderCountryResponse = await countriesAPI.get(`/alpha?codes=${countryData.borders.join(';')}`);
+					borderCountryData = borderCountryResponse.data;
+				}
 
-			setCountryDetailsData({
-				...countryData,
-				borders: borderCountryData
-			});
+				setCountryDetailsData({
+					...countryData,
+					borders: borderCountryData
+				});
+			} catch (err) {
+				if (err.response.status) navigate('/');
+			}
 		}
 		loadCountryDetails();
 	}, [location, setCountryDetailsData]);
@@ -80,12 +89,14 @@ const Country: React.FC<RouteComponentProps> = ({ location }) => {
 								<Info infoKey="Currencies" infoValue={countryDetailsData.currencies[0].name} />
 								<Info infoKey="Languages" infoValue={countryDetailsData.languages[0].name} />
 							</InfoContainer>
-							<TagContainer>
-								Border Countries:
-								{countryDetailsData.borders.map(({ name }) => (
-									<Tag>{name}</Tag>
-								))}
-							</TagContainer>
+							{countryDetailsData.borders &&
+								<TagContainer>
+									Border Countries:
+									{countryDetailsData.borders.map(({ name }) => (
+										<Tag>{name}</Tag>
+									))}
+								</TagContainer>
+							}
 						</CountryDetailsContainer>
 					</>
 				}

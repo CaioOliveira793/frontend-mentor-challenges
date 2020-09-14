@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { RouteComponentProps, WindowLocation } from '@reach/router';
+import { RouteComponentProps } from '@reach/router';
+import { useNavigate, Link } from '@reach/router';
 import styled from 'styled-components';
 
 import Header from '../components/Header';
@@ -59,6 +60,10 @@ const CountryCardContainer = styled.div`
 	}
 `;
 
+const StyledLink = styled(Link)`
+	text-decoration: none;
+`;
+
 const StyledCountryCard = styled(CountryCard)`
 	@media (max-width: 575px) {
 		max-width: 200px;
@@ -80,15 +85,17 @@ interface CountryData {
 	population: number;
 	region: string;
 	capital: string;
+	alpha3Code: string;
 }
 
 
 const Home: React.FC<RouteComponentProps> = ({ location }) => {
+	const navigate = useNavigate();
 	const [countryDataState, setCountryDataState] = useState<CountryData[]>([]);
 
 	useEffect(() => {
 		async function loadAllCountries() {
-			const response = await countriesAPI.get<CountryData[]>('/all?fields=name;population;region;capital;flag');
+			const response = await countriesAPI.get<CountryData[]>('/all?fields=name;population;region;capital;flag;alpha3Code');
 			const { data } = response;
 			setCountryDataState(data);
 		}
@@ -96,17 +103,16 @@ const Home: React.FC<RouteComponentProps> = ({ location }) => {
 	}, []);
 
 	const handleSearchValueChange = useCallback(async (searchValue: string) => {
-		const response = await countriesAPI.get<CountryData[]>(`/name/${searchValue}?fields=name;population;region;capital;flag`);
+		const response = await countriesAPI.get<CountryData[]>(`/name/${searchValue}?fields=name;population;region;capital;flag;alpha3Code`);
 		const { data } = response;
 		setCountryDataState(data);
 	}, []);
 
 	const handleDropdownSelectionChange = useCallback(async (selectedValue: typeof regions[number]['value']) => {
-		const response = await countriesAPI.get<CountryData[]>(`/region/${selectedValue}?fields=name;population;region;capital;flag`);
+		const response = await countriesAPI.get<CountryData[]>(`/region/${selectedValue}?fields=name;population;region;capital;flag;alpha3Code`);
 		const { data } = response;
 		setCountryDataState(data);
 	}, []);
-
 
   return (
 		<Container>
@@ -117,14 +123,16 @@ const Home: React.FC<RouteComponentProps> = ({ location }) => {
 			</SearchContainer>
 			<CountryCardContainer>
 				{countryDataState.map((countryData, index) => (
-					<StyledCountryCard
-						key={index}
-						flagURL={countryData.flag}
-						countryName={countryData.name}
-						population={countryData.population}
-						region={countryData.region}
-						capital={countryData.capital}
-					/>
+					<StyledLink to={`countries/${countryData.alpha3Code.toLowerCase()}`}>
+						<StyledCountryCard
+							key={index}
+							flagURL={countryData.flag}
+							countryName={countryData.name}
+							population={countryData.population}
+							region={countryData.region}
+							capital={countryData.capital}
+						/>
+					</StyledLink>
 				))}
 			</CountryCardContainer>
 		</Container>
