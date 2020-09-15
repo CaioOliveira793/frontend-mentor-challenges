@@ -19,4 +19,5 @@ module.exports = {
 			}
 		}
 	],
+	pathPrefix: `/frontend-mentor-challenges/countries-viewer`,
 }
