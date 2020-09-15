@@ -1,4 +1,5 @@
 import React from 'react';
+import { withPrefix } from "gatsby"
 import { Router, Redirect } from '@reach/router';
 
 import Country from '../modules/Country';
@@ -7,8 +8,8 @@ import Country from '../modules/Country';
 const CountriesRoute: React.FC = () => {
 	return (
 		<Router>
-			<Country path="/countries/:countryCode" />
-			<Redirect from="/countries/*" to="/" noThrow />
+			<Country path={withPrefix('countries/:countryCode')} />
+			<Redirect from={withPrefix('countries/*')} to={withPrefix('/')} noThrow />
 		</Router>
 	);
 }

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { RouteComponentProps, Link } from '@reach/router';
+import { Link } from 'gatsby';
+import { RouteComponentProps } from '@reach/router';
 import styled from 'styled-components';
 
 import Header from '../components/Header';

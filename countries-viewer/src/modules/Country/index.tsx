@@ -10,6 +10,7 @@ import countriesAPI from '../../services/countriesAPI';
 
 import { Container, NavigationContainer, StyledLink, CountryContentContainer,
 	FlagImage, CountryDetailsContainer, Name, InfoContainer, TagContainer } from './styles';
+import { withPrefix } from 'gatsby';
 
 interface CountryDetailData {
 	flag: string;
@@ -57,7 +58,7 @@ const Country: React.FC<CountryProps> = ({ countryCode }) => {
 					borders: borderCountryData
 				});
 			} catch (err) {
-				if (err.response.status) navigate('/');
+				navigate(withPrefix('/'));
 			}
 		}
 		loadCountryDetails();
