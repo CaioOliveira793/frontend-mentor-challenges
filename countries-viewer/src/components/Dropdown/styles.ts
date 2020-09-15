@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { DefaultTheme, StyledComponentProps } from 'styled-components';
 
 export const Container = styled.div`
 	display: flex;
@@ -61,7 +61,8 @@ export const Option = styled.span`
 	width: 100%;
 	padding: 8px 32px;
 
-	background: ${({ theme }) => theme.value.colors.elements};
+	/* background: ${({ theme, activeOption }) => (activeOption) ? theme.value.colors.scroll : theme.value.colors.elements}; */
+	/* background: ${({ theme }) => theme.value.colors.elements}; */
 	color: ${({ theme }) => theme.value.colors.text};
 
 	cursor: pointer;

@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { RouteComponentProps } from '@reach/router';
-import { useNavigate, Link } from '@reach/router';
+import { RouteComponentProps, Link } from '@reach/router';
 import styled from 'styled-components';
 
 import Header from '../components/Header';
@@ -79,6 +78,14 @@ const regions = [
 	{ value: 'oceania', label: 'Oceania' }
 ];
 
+const regionsToIndex = {
+	africa: 0,
+	americas: 1,
+	asia: 2,
+	europe: 3,
+	oceania: 4,
+};
+
 interface CountryData {
 	name: string;
 	flag: string;
@@ -90,42 +97,79 @@ interface CountryData {
 
 
 const Home: React.FC<RouteComponentProps> = ({ location }) => {
-	const navigate = useNavigate();
 	const [countryDataState, setCountryDataState] = useState<CountryData[]>([]);
+	const [params, ] = useState(() => {
+		const searchParams = new URLSearchParams(location?.search);
+		const searchRegion = searchParams.get('region') as 'africa' | 'americas' | 'asia' | 'europe' | 'oceania';
+
+		return {
+			searchParams,
+			name: searchParams.get('name'),
+			region: searchRegion?.match(/^(africa|americas|asia|europe|oceania)$/) ? searchRegion : undefined,
+		}
+	});
+
 
 	useEffect(() => {
-		async function loadAllCountries() {
-			const response = await countriesAPI.get<CountryData[]>('/all?fields=name;population;region;capital;flag;alpha3Code');
+		async function loadCountries() {
+			let response;
+			if (params.name) {
+				response = await countriesAPI.get<CountryData[]>(`/name/${params.name}?fields=name;population;region;capital;flag;alpha3Code`);
+			} else if (params.region) {
+				response = await countriesAPI.get<CountryData[]>(`/region/${params.region}?fields=name;population;region;capital;flag;alpha3Code`);
+			} else {
+				response = await countriesAPI.get<CountryData[]>('/all?fields=name;population;region;capital;flag;alpha3Code');
+			}
 			const { data } = response;
 			setCountryDataState(data);
 		}
-		loadAllCountries();
-	}, []);
+		loadCountries();
+	}, [params]);
 
 	const handleSearchValueChange = useCallback(async (searchValue: string) => {
-		const response = await countriesAPI.get<CountryData[]>(`/name/${searchValue}?fields=name;population;region;capital;flag;alpha3Code`);
-		const { data } = response;
-		setCountryDataState(data);
+		try {
+			const response = await countriesAPI
+				.get<CountryData[]>(`/name/${searchValue}?fields=name;population;region;capital;flag;alpha3Code`);
+			const { data } = response;
+			setCountryDataState(data);
+		} catch (err) {
+			setCountryDataState([]);
+		}
 	}, []);
 
 	const handleDropdownSelectionChange = useCallback(async (selectedValue: typeof regions[number]['value']) => {
-		const response = await countriesAPI.get<CountryData[]>(`/region/${selectedValue}?fields=name;population;region;capital;flag;alpha3Code`);
-		const { data } = response;
-		setCountryDataState(data);
+		try {
+			const response = await countriesAPI
+				.get<CountryData[]>(`/region/${selectedValue}?fields=name;population;region;capital;flag;alpha3Code`);
+			const { data } = response;
+			setCountryDataState(data);
+		} catch (err) {
+			setCountryDataState([]);
+		}
 	}, []);
 
   return (
 		<Container>
 			<Header />
 			<SearchContainer>
-				<StyledSearch placeholder="Search for a country..." debounce={500} onSearchValueChange={handleSearchValueChange} />
-				<Dropdown label="Filter by Region" list={regions} onSelectedValueChange={handleDropdownSelectionChange} />
+				<StyledSearch
+					debounce={500}
+					onSearchValueChange={handleSearchValueChange}
+					initialValue={params.name as string}
+					placeholder="Search for a country..."
+					type="text"
+				/>
+				<Dropdown
+					label="Filter by Region"
+					list={regions}
+					initialListItemIndex={(params.region) ? regionsToIndex[params.region] : undefined}
+					onSelectedValueChange={handleDropdownSelectionChange}
+				/>
 			</SearchContainer>
 			<CountryCardContainer>
 				{countryDataState.map((countryData, index) => (
-					<StyledLink to={`countries/${countryData.alpha3Code.toLowerCase()}`}>
+					<StyledLink key={index} to={`countries/${countryData.alpha3Code.toLowerCase()}`}>
 						<StyledCountryCard
-							key={index}
 							flagURL={countryData.flag}
 							countryName={countryData.name}
 							population={countryData.population}

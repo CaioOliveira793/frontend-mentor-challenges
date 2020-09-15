@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { HTMLProps } from "react";
+import styled, { StyledFunction } from "styled-components";
 
 export const Container = styled.div`
 	display: flex;
