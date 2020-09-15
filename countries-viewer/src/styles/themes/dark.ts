@@ -1,4 +1,4 @@
-import DefaultTheme from './DefaultTheme';
+import { DefaultTheme } from 'styled-components';
 
 export default {
 	name: 'dark',
@@ -13,4 +13,4 @@ export default {
 	shadow: '0px 0px 4px 0px #101C27;',
 	borderRadius: '5px',
 	maxPageWidth: '1400px'
-};
+} as DefaultTheme['value'];

@@ -27,6 +27,7 @@
     "typeface-nunito-sans": "^0.0.72"
   },
   "devDependencies": {
+    "@hot-loader/react-dom": "^16.13.0",
     "@types/node": "^14.10.1",
     "@types/reach__router": "^1.3.5",
     "@types/react": "^16.9.49",

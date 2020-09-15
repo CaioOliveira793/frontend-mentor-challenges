@@ -32,15 +32,15 @@ interface CountryDetailData {
 	}[];
 }
 
+interface CountryProps extends RouteComponentProps {
+	countryCode?: string;
+}
 
-const Country: React.FC<RouteComponentProps> = ({ location }) => {
+const Country: React.FC<CountryProps> = ({ countryCode }) => {
 	const navigate = useNavigate();
-	const [countryDetailsData, setCountryDetailsData] = useState<CountryDetailData>(null);
+	const [countryDetailsData, setCountryDetailsData] = useState<CountryDetailData>(null as unknown as CountryDetailData);
 
 	useEffect(() => {
-		const { pathname } = location;
-		const countryCode = pathname.substring(pathname.lastIndexOf('/') + 1);
-
 		async function loadCountryDetails() {
 			try {
 				const countryResponse = await countriesAPI.get<CountryDetailData>(`/alpha/${countryCode}`);
@@ -61,7 +61,7 @@ const Country: React.FC<RouteComponentProps> = ({ location }) => {
 			}
 		}
 		loadCountryDetails();
-	}, [location, setCountryDetailsData]);
+	}, [countryCode, setCountryDetailsData]);
 
 
 	return (
