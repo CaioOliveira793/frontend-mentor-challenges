@@ -1,22 +1,34 @@
 {
-  "name": "gatsby-starter-hello-world",
-  "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "name": "countries-viewer",
+  "description": "Solution for the countries viewer challenge",
+  "homepage": "http://caiooliveira793.github.io/frontend-mentor-challenges/countries-viewer",
   "version": "0.1.0",
+  "author": {
+    "email": "caio.vsoliveira23@gmail.com",
+    "name": "Caio Oliveira",
+    "url": "https://github.com/CaioOliveira793"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CaioOliveira793/frontend-mentor-challenges"
+  },
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
+    "predeploy": "gatsby build --prefix-paths",
+    "deploy": "gh-pages --dist public --dest countries-viewer",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "clean": "gatsby clean"
   },
   "dependencies": {
-    "@types/styled-components": "^5.1.3",
+    "@reach/router": "^1.3.4",
+    "axios": "^0.20.0",
     "babel-plugin-styled-components": "^1.11.1",
     "gatsby": "^2.24.54",
+    "gatsby-plugin-create-client-paths": "^2.3.10",
     "gatsby-plugin-styled-components": "^3.3.10",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -25,13 +37,13 @@
     "typeface-nunito-sans": "^0.0.72"
   },
   "devDependencies": {
+    "@hot-loader/react-dom": "^16.13.0",
+    "@types/node": "^14.10.1",
+    "@types/reach__router": "^1.3.5",
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
+    "@types/styled-components": "^5.1.3",
+    "gh-pages": "^3.1.0",
     "prettier": "2.1.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
 }

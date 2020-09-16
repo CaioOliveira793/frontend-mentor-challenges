@@ -6,10 +6,11 @@ export const Container = styled.div`
 	align-items: center;
 	justify-content: center;
 
+	width: 100%;
 	height: 80px;
 
-	background: ${({ theme }) => theme.colors.elements};
-	box-shadow: ${({ theme }) => theme.shadow};
+	background: ${({ theme }) => theme.value.colors.elements};
+	box-shadow: ${({ theme }) => theme.value.shadow};
 
 	> header {
 		display: flex;
@@ -18,7 +19,7 @@ export const Container = styled.div`
 		align-items: center;
 		justify-content: space-between;
 
-		max-width: 1400px;
+		max-width: ${({ theme }) => theme.value.maxPageWidth};
 		height: 100%;
 		padding: 40px;
 	}
@@ -28,19 +29,5 @@ export const Title = styled.h1`
 	font-size: 24px;
 	font-weight: 800;
 
-	color: ${({ theme }) => theme.colors.text};
-`;
-
-export const ThemeSwitcher = styled.button`
-	display: flex;
-	flex-flow: row nowrap;
-	align-items: center;
-	justify-content: space-between;
-	
-	background: transparent;
-	color: ${({ theme }) => theme.colors.text};
-
-	> span {
-		margin-left: 8px;
-	}
+	color: ${({ theme }) => theme.value.colors.text};
 `;

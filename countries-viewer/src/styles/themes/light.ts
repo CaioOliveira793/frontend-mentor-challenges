@@ -1,4 +1,4 @@
-import DefaultTheme from './DefaultTheme';
+import { DefaultTheme } from 'styled-components';
 
 export default {
 	name: 'light',
@@ -6,8 +6,11 @@ export default {
 	colors: {
 		elements: '#FFF',
 		background: '#FAFAFA',
-		text: '#111517'
+		text: '#111517',
+		scroll: '#EFEFEF',
 	},
 
-	shadow: '0px 3px 4px 0px #EAEAEA;'
-};
+	shadow: '0px 0px 4px 0px #EAEAEA;',
+	borderRadius: '5px',
+	maxPageWidth: '1400px'
+} as DefaultTheme['value'];
